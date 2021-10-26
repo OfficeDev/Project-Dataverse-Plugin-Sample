@@ -1,33 +1,40 @@
-# Project
+# Dataverse Plugin to Block Project Deletion
+In Project for the Web, any user that has a project shared with them can delete the entire project, without being able to revert the deletion if this was done by accident. Teammates can also delete shared projects without having a project license when using Project Power Apps. 
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+To limit this from happening, you can use Dataverse plug-ins to disable the delete operation on projects for a user based on any Dataverse condition that you determine. In the plug-in in this example, we will be removing the delete permission from a user that is not in a specific Team in Dataverse. Dataverse Teams can be backed by a M365 Group or created manually. 
 
-As the maintainer of this project, please make a few updates:
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+## Scenario
+As a Dataverse Admin, I want to limit who has permissions to delete projects in Project Power Apps and Project for the Web.
 
-## Contributing
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+## Prerequisites
+To use this code sample, you need the Official Dataverse plug-in pre-requisites, which you can find [here](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/tutorial-write-plug-in#prerequisites).
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+## How to use this solution
+Please visit the Official documentation to [Write a Dataverse Plug-in](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/tutorial-write-plug-in#prerequisites) for latest updates. A step-by step to use this sample plug-in is provided below for convenience.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+**IMPORTANT:** In the *ProjectBlockDeletePlugin.cs* file where commented TODO, you need to manually enter the Team Id give delete privileges to. You can find these in Power Apps Data Explorer.
 
-## Trademarks
+1. Sign the Assembly: 
+    * Right click the project in your Solution Explorer and press *Properties*. 
+    * Go to the *Signing* tab, check Sign the assembly, Choose *<New…>* from the dropdown options and name your signature. Password is optional.
+2. Build your solution by right clicking the project in your Solution Explorer and pressing *Build*.
+3. Launch the Plugin Registration Tool (installed in Prerequisites).
+4. Press the *Create New Connection* button at the top left and enter the account from which you want to register the plugin to Dataverse. 
+5. Register a new assembly.
+6. Load the assembly from the .dll previously built, which is stored in your project’s Debug folder.
+7. Press Register Selected Plugins.
+8. Find your Plugin Assembly in the list of Registered Plugins and right click to Register a new Step.
+9. Register the step with the following changes:
+    * Message: Delete
+    * Primary Entity: msdyn_project
+    * Event Pipeline Stage of Execution: PreValidation
+10.	We’re done! You can now test manually in Project Power Apps and Project for the Web to verify functionality.
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+## Additional resources
+* [Project Blog Post](tbd) on how to write this plug-in from scratch, with photos.
+* [Official Dataverse Plug-In Documentation](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/plug-ins)
+## Copyright
+Copyright (c) 2016 Microsoft. All rights reserved.
