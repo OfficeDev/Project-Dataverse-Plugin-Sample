@@ -34,7 +34,7 @@ Please visit the Official documentation to [Write a Dataverse Plug-in](https://d
 
 
 ## Additional resources
-* [Project Blog Post](tbd) on how to write this plug-in from scratch, with photos.
+* [Project Blog Post](https://techcommunity.microsoft.com/t5/project-blog/how-to-prevent-a-team-member-from-deleting-a-project-using-a/ba-p/2911074) on how to write this plug-in from scratch, with photos.
 * [Official Dataverse Plug-In Documentation](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/plug-ins)
 ## Copyright
 Copyright (c) 2016 Microsoft. All rights reserved.
